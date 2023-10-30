@@ -1,20 +1,18 @@
-const person = {
-  name: 'Sebastian',
-  age: 29,
+import './style.css';
+import { App } from './components/App';
+// import { Component } from './lib/component';
+
+function render(el: HTMLElement | null, app: HTMLElement) {
+  if(el) {
+    el.appendChild(app);
+  }
 }
 
-const proxy = new Proxy(person, {
-  set(target, p, newValue, receiver) {
-    console.log(target, p, newValue, receiver)
-    return true;
-  },
-})
+render(document.getElementById("app"), App());
 
-const nameEl = document.getElementById('name');
-const ageEl = document.getElementById('age');
+// // This are our effects
+// nameEl!.innerHTML = person.name;
+// ageEl!.innerHTML = String(person.age);
 
-nameEl!.innerHTML = person.name;
-ageEl!.innerHTML = String(person.age);
-
-proxy.name = 'Luis'
-proxy.age = 25
+// person.name = 'Luis'
+// person.age = 25

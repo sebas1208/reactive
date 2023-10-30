@@ -1,14 +1,44 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="name"></div>
-    <div id="age"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+</head>
+
+<body>
+  
+  <div class="flex w-screen h-auto p-4 mt-5">
+    <div class="w-1/4 h-full bg-gray-900"></div>
+    <!-- https://codesandbox.io/s/todolist-with-react-and-tailwind-q699g?file=/src/App.jsx -->
+    <div class="flex-col w-1/2 h-full bg-gray-100 rounded-lg overflow-scroll p-2 shadow-md">
+      <h1 class="flex-1 font-sans font-thin text-center text-5xl text-gray-600 mb-4">Hacktoberfest Items!</h1>
+      <div id="app"></div>
+      <!-- <form class="flex items-center border-b-2 border-[#b0d23f] py-2">
+        <input
+          class="font-sans font-thin text-2xl appearance-none bg-transparent border-none w-full text-gray-600 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          name="todo"
+          type="text" 
+          placeholder="New Todo" 
+          value="">
+        <button
+          class="flex-no-shrink bg-[#4594d0] hover:bg-[#162a51] border-[#4594d0] hover:border-[#162a51] text-sm border-4 text-white py-1 px-2 rounded"
+          type="submit">
+          Add
+        </button>
+        <button
+          class="flex-no-shrink border-transparent ml-1 border-4 text-[#f04e45] hover:text-[#162a51] text-sm py-1 px-2 rounded"
+          type="button">
+          Cancel
+        </button>
+        Total: {{}}
+      </form>
+      <h3 class="flex-1 font-sans font-thin text-center text-3xl text-white bg-[#b0d23f] p-4 m-1">No Todos</h3> -->
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
