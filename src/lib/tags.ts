@@ -35,7 +35,6 @@ export function input(options: InputOptions) {
   if (inputEvent) {
     input.addEventListener('input', inputEvent)
   }
-  watchEffect(() => console.log(value()))
   watchEffect(() => input.value = String(value()));
 
   return input;
@@ -45,9 +44,12 @@ interface SpanOptions {
   value: () => string
 }
 export function span(options: SpanOptions) {
-  const span = document.createElement('span')
+  const span = document.createElement('span');
+  watchEffect(() => {
+    console.log('Setting Inner Text', options.value);
+    span.innerText = options.value();
+  });
 
-  watchEffect(() => span.innerText = options.value());
   return span;
 }
 
