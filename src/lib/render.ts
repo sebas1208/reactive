@@ -1,13 +1,21 @@
 import { watchEffect } from "./state";
 
+export function h1(text: string) {
+  const h1 = document.createElement('h2');
+  h1.className = 'mb-4 mx-auto font-sans font-thin text-center text-5xl';
+  h1.textContent = text;
+
+  return h1;
+}
+
 interface InputOptions {
   class: string[];
-  input?: (ev: Event) => void;
+  onInput?: (ev: Event) => void;
   value: () => string
 }
 export function input(options: InputOptions) {
   const input = document.createElement('input');
-  const { class: classNames, input: inputEvent, value = () => '' } = options;
+  const { class: classNames, onInput: inputEvent, value = () => '' } = options;
   input.setAttribute('class', classNames.join(' '));
   if (inputEvent) {
     input.addEventListener('input', inputEvent)
