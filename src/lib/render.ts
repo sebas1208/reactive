@@ -25,16 +25,6 @@ export function input(options: InputOptions) {
   return input;
 }
 
-interface SpanOptions {
-  value: () => string
-}
-export function span(options: SpanOptions) {
-  const span = document.createElement('span');
-  watchEffect(() => span.innerText = options.value());
-
-  return span;
-}
-
 interface ButtonOptions {
   class: string[],
   onClick: EventListener,

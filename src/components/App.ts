@@ -1,5 +1,5 @@
 import { watchEffect, state } from "../lib/state";
-import { div, span } from "../lib/render";
+import { div } from "../lib/render";
 import { Layout } from "./Layout";
 import { Input } from "./Input";
 import { Table } from "./Table";
