@@ -9,14 +9,14 @@ export function h1(text: string) {
 }
 
 interface InputOptions {
-  class: string[];
+  class?: string;
   onInput?: (ev: Event) => void;
   value: () => string
 }
 export function input(options: InputOptions) {
   const input = document.createElement('input');
   const { class: classNames, onInput: inputEvent, value = () => '' } = options;
-  input.setAttribute('class', classNames.join(' '));
+  input.setAttribute('class', classNames ?? '');
   if (inputEvent) {
     input.addEventListener('input', inputEvent)
   }
@@ -26,7 +26,7 @@ export function input(options: InputOptions) {
 }
 
 interface ButtonOptions {
-  class: string[],
+  class?: string,
   onClick: EventListener,
   text: string;
 }
@@ -36,24 +36,22 @@ export function button(options: ButtonOptions) {
 
   button.addEventListener('click', onClick)
   button.innerText = innerText;
-  button.setAttribute('class', classNames.join(' '));
+  button.setAttribute('class', classNames ?? '');
 
   return button;
 }
 
 interface DivOptions {
-  class?: string[],
+  class?: string,
   children: () => (HTMLElement | string)[];
 }
 export function div(options: DivOptions) {
-  const div = document.createElement('div');
   const { class: classNames, children } = options;
-  div.setAttribute('class', (classNames ?? []).join(' '));
+  const div = document.createElement('div');
+  div.setAttribute('class', classNames ?? '');
 
-  watchEffect(() => {
-    div.innerHTML = '';
-    div.append(...children());
-  });
+  div.innerHTML = '';
+  div.append(...children());  
 
   return div;
 }

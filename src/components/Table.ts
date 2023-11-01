@@ -3,7 +3,8 @@ import { InvoiceItem } from "./App";
 
 export function Table(items: () => InvoiceItem[]) {
   return div({
-    class: ['relative overflow-x-auto'], children: () => [
+    class: 'relative overflow-x-auto', 
+    children: () => [
       tag('table', 'w-full text-sm text-left text-gray-500 dark:text-gray-400', [
         tag('thead', 'text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400', [
           tag('tr', '', [
