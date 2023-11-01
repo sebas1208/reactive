@@ -1,5 +1,5 @@
 import { watchEffect, state } from "../lib/state";
-import { button, div, input, span } from "../lib/render";
+import { button, div, span } from "../lib/render";
 import { Layout } from "./Layout";
 import { Input } from "./Input";
 
@@ -17,9 +17,7 @@ interface Invoice {
 export function App() {
   const newItem = state<InvoiceItem>({ description: '', quantity: 0, value: 0 });
   const invoice = state<Invoice>({
-    items: [
-      { description: 'Hacktoberfest 2023 T-Shirt', quantity: 10, value: 5.5 }
-    ],
+    items: [{ description: 'Hacktoberfest 2023 T-Shirt', quantity: 10, value: 5.5 }],
     total: 55,
   });
 
@@ -30,17 +28,17 @@ export function App() {
       class: [],
       children: () => [
         Input({
-          label: 'Description:', 
-          value: () => newItem.description, 
+          label: 'Description:',
+          value: () => newItem.description,
           onInput: (ev: Event) => newItem.description = (<HTMLInputElement>ev?.currentTarget).value
         }),
         Input({
-          label: 'Quantity:', 
+          label: 'Quantity:',
           value: () => String(newItem.quantity),
           onInput: (ev: Event) => newItem.quantity = Number((<HTMLInputElement>ev?.currentTarget).value),
         }),
         Input({
-          label: 'Value:', 
+          label: 'Value:',
           value: () => String(newItem.value),
           onInput: (ev: Event) => newItem.value = Number((<HTMLInputElement>ev?.currentTarget).value),
         }),
