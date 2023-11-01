@@ -7,7 +7,7 @@ export function Table(items: () => InvoiceItem[]) {
       tag('table', 'w-full text-sm text-left text-gray-500 dark:text-gray-400', [
         tag('thead', 'text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400', [
           tag('tr', '', [
-            tag('th', 'px-6 py-3', ['Descripcion']),
+            tag('th', 'px-6 py-3', ['Descripción']),
             tag('th', 'px-6 py-3', ['Cantidad']),
             tag('th', 'px-6 py-3', ['Valor']),
           ]),
@@ -26,7 +26,7 @@ export function Table(items: () => InvoiceItem[]) {
           tag(
             'td',
             'px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white',
-            [String(item.value.toFixed(2))]
+            [`$ ${String(item.value.toFixed(2))}`]
           ),
         ]))])
       ]),

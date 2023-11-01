@@ -7,7 +7,7 @@ export function Layout(children: (HTMLElement | string)[]) {
       div({
         class: ['flex flex-wrap flex-col h-full bg-gray-100 rounded-lg overflow-scroll p-2 shadow-lg'],
         children: () => [
-          h1('Hacktoberfest Items!'),
+          h1('Hacktoberfest 2023!'),
           ...children
         ],
       })
