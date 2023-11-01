@@ -21,7 +21,7 @@ export function App() {
 
   shopping.items = [...shopping.items, { description: 'Gifts', quantity: 3, value: 100 }];
 
-  console.log(shopping.items);
+  console.log(shopping.total);
 
   return Layout([`Hello World`]);
 }
