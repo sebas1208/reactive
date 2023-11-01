@@ -38,11 +38,11 @@ export function span(options: SpanOptions) {
 interface ButtonOptions {
   class: string[],
   onClick: EventListener,
-  innerText: string;
+  text: string;
 }
 export function button(options: ButtonOptions) {
   const button = document.createElement('button')
-  const { class: classNames, onClick, innerText } = options;
+  const { class: classNames, onClick, text: innerText } = options;
 
   button.addEventListener('click', onClick)
   button.innerText = innerText;
