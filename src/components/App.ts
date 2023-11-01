@@ -1,27 +1,27 @@
 import { Layout } from "./Layout";
 
-export interface InvoiceItem {
+export interface ShoppingItem {
   description: string;
   quantity: number;
   value: number;
 }
 
-export interface Invoice {
+export interface Shopping {
   total: number;
-  items: InvoiceItem[],
+  items: ShoppingItem[],
 }
 
 export function App() {
-  const invoice: Invoice = {
+  const shopping: Shopping = {
     items: [{ description: 'Hacktoberfest 2023 T-Shirt', quantity: 10, value: 5.5 }],
     total: 0,
   };
 
-  invoice.total = invoice.items.reduce((total, item) => total += (item.quantity * item.value), 0);
+  shopping.total = shopping.items.reduce((total, item) => total += (item.quantity * item.value), 0);
 
-  invoice.items = [...invoice.items, { description: 'Gifts', quantity: 3, value: 100 }];
+  shopping.items = [...shopping.items, { description: 'Gifts', quantity: 3, value: 100 }];
 
-  console.log(invoice.items);
+  console.log(shopping.items);
 
-  return Layout([`Total: $ ${invoice.total}`]);
+  return Layout([`Hello World`]);
 }

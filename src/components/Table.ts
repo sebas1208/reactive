@@ -1,7 +1,7 @@
 import { div, tag } from "../lib/render";
-import { InvoiceItem } from "./App";
+import { ShoppingItem } from "./App";
 
-export function Table(items: () => InvoiceItem[]) {
+export function Table(items: () => ShoppingItem[]) {
   return div({
     class: 'relative overflow-x-auto', 
     children: () => [
