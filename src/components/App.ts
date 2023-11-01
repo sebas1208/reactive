@@ -13,7 +13,7 @@ export interface Shopping {
 
 export function App() {
   const shopping: Shopping = {
-    items: [{ description: 'Hacktoberfest 2023 T-Shirt', quantity: 10, value: 5.5 }],
+    items: [{ description: 'Camisetas Hacktoberfest 2023', quantity: 5, value: 10 }],
     total: 0,
   };
 
