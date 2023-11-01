@@ -1,5 +1,5 @@
 import { watchEffect, state } from "../lib/state";
-import { button, div, input, span } from "../lib/tags";
+import { button, div, input, span } from "../lib/render";
 
 interface InvoiceItem {
   description: string;
@@ -48,26 +48,29 @@ export function App() {
         class: ['flex-no-shrink bg-[#4594d0] hover:bg-[#162a51] border-[#4594d0] hover:border-[#162a51] text-sm border-4 text-white py-1 px-2 rounded mt-2'],
         innerText: 'Add',
         onClick: () => {
-          invoice.items = [...invoice.items, newItem];
-          // newItem.quantity = 0;
-          // newItem.value = 0;
-          // newItem.description = '';
+          invoice.items = [...invoice.items, { ...newItem }];
+          newItem.quantity = 0;
+          newItem.value = 0;
+          newItem.description = '';
         }
       }),
-      // div({
-      //   class: ['flex justify-between font-bold	mt-4'],
-      //   children: () => ['Description', 'Quantity', 'Value'].map(item => div({ children: () => [item] }))
-      // }),
-      // div({
-      //   children: () => invoice.items.map(item => div({
-      //     class: ['flex justify-between'],
-      //     children: () => [
-      //       span({ value: () => `${item.description}` }),
-      //       span({ value: () => `${item.quantity}` }),
-      //       span({ value: () => `$ ${item.value.toFixed(2)}` })
-      //     ]
-      //   }))
-      // }),
+      div({
+        class: ['flex justify-between font-bold	mt-4'],
+        children: () => [
+          div({ children: () => ['Description'] }),
+          div({ children: () => ['Quantity'] }),
+          div({ children: () => ['Value'] })],
+      }),
+      div({
+        children: () => invoice.items.map(item => div({
+          class: ['flex justify-between font-normal	mt-4'],
+          children: () => [
+            span({ value: () => `${item.description}` }),
+            span({ value: () => `${item.quantity}` }),
+            span({ value: () => `$ ${item.value.toFixed(2)}` })
+          ]
+        }))
+      }),
       div({
         class: ['mt-4'], children: () => [
           'Total: $ ',

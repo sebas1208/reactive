@@ -20,11 +20,11 @@ export function computed(f: Function) {
   return effect();
 }
 
-function createHandler<T extends object>(): ProxyHandler<T> {
+function createHandler<T extends object, K extends keyof T>(): ProxyHandler<T> {
   return {
-    set<T, K extends keyof T>(target: T, key: K, newValue: T[K]) {
-      if (newValue === target[key]) return true;
-      target[key] = newValue;
+    set(target, key, newValue) {
+      if (newValue === target[key as K]) return true;
+      target[key as K] = newValue;
 
       const targetMap = reactiveMap.get(target);
       const effectSet = targetMap?.get(String(key));
