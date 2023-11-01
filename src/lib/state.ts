@@ -1,8 +1,10 @@
-export const reactiveMap = new WeakMap<object, Map<string, Set<Function>>>()
+type Effect = Function;
 
-let activeEffect: Function | null;
+export const reactiveMap = new WeakMap<object, Map<string, Set<Effect>>>()
+
+let activeEffect: Effect | null;
 // Sets the effect as active, runs the effect and set it as null
-export function watchEffect(f: Function) {
+export function watchEffect(f: Effect) {
   const effect = () => {
     activeEffect = effect;
     f();
@@ -12,8 +14,15 @@ export function watchEffect(f: Function) {
   effect();
 }
 
-function createHandler<T extends object, K extends keyof T>(): ProxyHandler<T> {
-  return {
+export function state<T extends object, K extends keyof T>(initialValue: T): T {
+  // Makes deep objects reactive too
+  Object.entries(initialValue).forEach(([key, value]) => {
+    if (typeof value === 'object') {
+      initialValue[(key as keyof T)] = state(value);
+    }
+  });
+
+  return new Proxy<T>(initialValue, {
     set(target, key, newValue) {
       // If the same value return
       if (newValue === target[key as K]) return true;
@@ -38,17 +47,17 @@ function createHandler<T extends object, K extends keyof T>(): ProxyHandler<T> {
       // If targetMap exists add the new effect
       if (targetMap) {
         // Gets or creates the effect set and sets it in the map
-        const effectSet = targetMap.get(key) ?? new Set<Function>;
+        const effectSet = targetMap.get(key) ?? new Set<Effect>;
         targetMap.set(key , effectSet);
         // Adds the running effect
         effectSet?.add(activeEffect);
       } else {
         // New effect set
-        const effectSet = new Set<Function>;
+        const effectSet = new Set<Effect>;
         effectSet.add(activeEffect);
 
         // New effect map
-        const effectMap = new Map<string, Set<Function>>;
+        const effectMap = new Map<string, Set<Effect>>;
         effectMap.set(key, effectSet);
         
         // Add to the global map
@@ -57,16 +66,5 @@ function createHandler<T extends object, K extends keyof T>(): ProxyHandler<T> {
 
       return value;
     }
-  }
-}
-
-export function state<T extends object>(initialValue: T): T {
-  // Makes deep objects reactive too
-  Object.entries(initialValue).forEach(([key, value]) => {
-    if (typeof value === 'object') {
-      initialValue[(key as keyof T)] = state(value);
-    }
   });
-
-  return new Proxy<T>(initialValue, createHandler());
 }
