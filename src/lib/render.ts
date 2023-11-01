@@ -58,12 +58,7 @@ interface DivOptions {
 export function div(options: DivOptions) {
   const div = document.createElement('div');
   const { class: classNames, children } = options;
-  // console.log(children)
-  // dom.addEventListener('click', elems)
-  // dom.innerText = value;
-  const classSetter = () => div.setAttribute('class', (classNames ?? []).join(' '));
-  // reactiveMap.set(div, classSetter)
-  classSetter();
+  div.setAttribute('class', (classNames ?? []).join(' '));
 
   watchEffect(() => {
     div.innerHTML = '';
@@ -71,4 +66,13 @@ export function div(options: DivOptions) {
   });
 
   return div;
+}
+
+
+export function tag(tag: string, className: string, children: (HTMLElement | string)[]) {
+  const table = document.createElement(tag);
+  table.className = className;
+  table.append(...children);
+
+  return table;
 }
