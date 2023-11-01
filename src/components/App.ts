@@ -37,17 +37,17 @@ export function App() {
       class: [],
       children: () => [
         Input({
-          label: 'Description:',
+          label: 'Descripción:',
           value: () => newItem.description,
           onInput: (ev: Event) => newItem.description = (<HTMLInputElement>ev?.currentTarget).value
         }),
         Input({
-          label: 'Quantity:',
+          label: 'Cantidad:',
           value: () => String(newItem.quantity),
           onInput: (ev: Event) => newItem.quantity = Number((<HTMLInputElement>ev?.currentTarget).value),
         }),
         Input({
-          label: 'Value:',
+          label: '$ Valor:',
           value: () => String(newItem.value),
           onInput: (ev: Event) => newItem.value = Number((<HTMLInputElement>ev?.currentTarget).value),
         }),
